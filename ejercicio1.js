@@ -6,16 +6,14 @@ function fun() {
     const random = new Promise(resolve => setTimeout(() => resolve(Math.floor(Math.random() * 100 + 1)), 2000))
 
     random.then(num => {
+        // Luego, toma ese número y crea una segunda promesa que se resuelva después de 3 segundos con el resultado de elevar ese número al cuadrado.
+        const cuadrado = new Promise(resolve => setTimeout(() => resolve(num ** 2)), 3000)
 
+        cuadrado.then(num => {
+            // Finalmente, toma el resultado de la segunda promesa y crea una tercera promesa que se resuelva después de 1 segundo con la raíz cuadrada del número resultante.
+            const raiz = new Promise(resolve => setTimeout(() => resolve(num ** 1/2)), 1000)
+        })
     })
+
+    ret
 }
-
-random => () => 
-
-// Luego, toma ese número y crea una segunda promesa que se resuelva después de 3 segundos con el resultado de elevar ese número al cuadrado.
-
-cuadrado => () => new Promise(resolve => setTimeout(() => resolve(Math.floor(Math.random() * 100 + 1)), 3000))
-
-// Finalmente, toma el resultado de la segunda promesa y crea una tercera promesa que se resuelva después de 1 segundo con la raíz cuadrada del número resultante.
-
-raiz => () => new Promise(resolve => setTimeout(() => resolve(Math.floor(Math.random() * 100 + 1)), 2000))

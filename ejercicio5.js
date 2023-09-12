@@ -13,6 +13,5 @@ function getMessage (message) {
     })
 }
 
-getMessage('UwU').then(console.log)
-
-setTimeout(cancel, 6000)
+getMessage('UwU').then(console.log).catch(console.log)
+setTimeout(cancel, 4000)
