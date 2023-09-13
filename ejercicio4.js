@@ -8,14 +8,12 @@
 
 const fun4 = n => {
   let lastProm
-  for (let i = 1; i <= n; i++) {
-    const prom = new Promise(resolve => setTimeout(() => {
-      console.log(i)
-      resolve(i)
-    }, n * 1000))
-    lastProm = lastProm ? lastProm.then(() => prom) : prom
-  }
-  return lastProm.then(() => 'Todas las promesas se resolvieron')
+  const prom = i => new Promise(resolve => setTimeout(() => {
+    console.log(i)
+    resolve(i)
+  }, n * 1000))
+  for (let i = 1; i <= n; i++) lastProm = lastProm ? lastProm.then(() => prom(i)) : prom(i)
+  return lastProm.then(() => new Promise(resolve => setTimeout(resolve, n * 1000, 'Todas las promesas se resolvieron')))
 }
 
 fun4(5).then(console.log).catch(console.log)
